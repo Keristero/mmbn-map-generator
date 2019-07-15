@@ -1,0 +1,11 @@
+Room placement strat
+
+Place first room in middle of gigantic grid
+	Determine the child with the most child nodes
+	Place that child - at a random position in a circle, the diameter is relative to the combined number of children of roomA and roomB
+		If placement fails, try again x times
+			If placement continues to fail, expand diameter of circle and try again y times (reset x)
+	Find a path between the closest connections in both rooms
+	(if possible reduce pathfinding cost of paths so that paths are reused)
+	Repeat until all nodes are placed.
+		
