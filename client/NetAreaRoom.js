@@ -8,6 +8,8 @@ class NetAreaRoom{
         this.addActiveLinks()
         this.width = this.prefab.width;
         this.height = this.prefab.height;
+        this.widthRatio = this.width/this.height
+        this.heightRatio = this.height/this.width
         this._x = 500
         this._y = 500
     }
@@ -23,6 +25,7 @@ class NetAreaRoom{
         })
     }
     pickSmallestPrefab(node){
+        /*
         let filtered = roomPrefabs.filter(prefab => prefab.total.connectors > node.minimumConnectors);
         let filteredFuther = filtered.filter(prefab => prefab.total.links > node.minimumLinks);
         if(filteredFuther.length == 0){
@@ -31,6 +34,9 @@ class NetAreaRoom{
         }else{
             return filteredFuther[0];
         }
+        */
+        let prefabGenerator = new PrefabGenerator()
+        return prefabGenerator.newPrefab({connectors:node.minimumConnectors,links:node.minimumLinks})
     }
     set x(val){
         if(val > 0 && val < (this.width+this.netAreaGenerator.width-1)){

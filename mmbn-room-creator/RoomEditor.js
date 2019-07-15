@@ -1,8 +1,8 @@
 class RoomEditor {
     constructor(width, height) {
-        this.total = {}
         this.grid = this.generateGrid(width,height)
         this.features = {}
+        this.total = {}
     }
     setGridTile(x,y,value){
         this.grid[y][x] = value;

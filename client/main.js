@@ -52,6 +52,8 @@ function getFavIcon(protocol,prefix,domain){
         img_siteFavicon.src = faviconUrl
         img_siteFavicon.onload = resolve
         console.log('faviconurl = ',faviconUrl)
+        //document.body.style.backgroundImage = `url(${faviconUrl})`;
+        //document.body.style.backgroundRepeat = "repeat";
     })
 }
 

@@ -62,16 +62,6 @@ class ProcessedElement{
                 }
             }
 
-            if(this.info.tag == "TITLE"){
-                //Get the title text
-                results.pageTitle = element.text
-            }
-
-            if(this.info.tag == "META"){
-                //Add meta tag information
-                results.meta[this.element.name] = this.element.content
-            }
-
             //Links: A
             if(this.info.tag == "A" || this.info.tag == "LINK"){
                 //Get the link (if there is one)
@@ -90,16 +80,20 @@ class ProcessedElement{
                 if(this.element.title){
                     this.info.title = element.title
                 }
+            }else if(this.info.tag == "META"){
+                //Add meta tag information
+                results.meta[this.element.name] = this.element.content
+            }else if(this.info.tag == "TITLE"){
+                //Get the title text
+                results.pageTitle = element.text
+            }else if(this.info.tag == "SOURCE"){
+                //Video and audio sources
+                this.info.src = element.src
+                this.info.type = element.type
             }else{
                 //All non links
                 //Add as a normal child
                 this.parentProcessedElement.children.push(this)
-            }
-
-            //Video and Audio: SOURCE
-            if(this.info.tag == "SOURCE"){
-                this.info.src = element.src
-                this.info.type = element.type
             }
         }
     }

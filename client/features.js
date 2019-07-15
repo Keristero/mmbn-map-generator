@@ -17,12 +17,3 @@ class LinkFeature extends Feature{
         this.type = "link"
     }
 }
-
-class ImageFeature extends Feature{
-    constructor(x,y,image){
-        super(x,y)
-        this.src = image.info.src
-        this.alt = image.info.color
-        this.type = "image"
-    }
-}

@@ -13,17 +13,17 @@ class NetAreaGenerator {
         easystar.setGrid(this.grid);
         easystar.setAcceptableTiles([0,1,3,4]);
         //Set pathfinding costs
-        easystar.setTileCost(1, 32);//Going through rooms
-        easystar.setTileCost(0, 16);//Going through empty area
-        easystar.setTileCost(3, 8);//Going along paths
+        easystar.setTileCost(1, 64);//Going through rooms
+        easystar.setTileCost(0, 4);//Going through empty area
+        easystar.setTileCost(3, 2);//Going along paths
         easystar.setTileCost(4, 1);//Going along important paths
 
         //Options
         this.maximumPathFindingAttempts = 1; //If pathfinding is failing, raising may help
         this.oneUseConnectors = true; //Improves look, but increases failure rate
-        this.pathImportanceThreshold = 0.6 //less = more important paths, Suggested range, 0.2 to 1
-        this.sparseness = 1
-        this.importantRoomSeperationMultiplier = 5;
+        this.pathImportanceThreshold = 0.4 //less = more important paths, Suggested range, 0.2 to 1
+        this.sparseness = 2
+        this.importantRoomSeperationMultiplier = 10;
 
     }
     async generateNetArea(startingNode){
@@ -122,8 +122,8 @@ class NetAreaGenerator {
         let attemptsAllowence = Math.floor(attempts / 5)
         let radius = (minimumDistance + roomDecendantAllowence + roomImportanceAllowence + attemptsAllowence)
         let pos = this.RNG.RandomPositionOnCircumference(radius)
-        pos.x = Math.floor(parentRoom.x + pos.x)
-        pos.y = Math.floor(parentRoom.y + pos.y)
+        pos.x = Math.floor(parentRoom.x+parentRoom.width/2 + pos.x*Math.min(parentRoom.widthRatio,1))
+        pos.y = Math.floor(parentRoom.y+parentRoom.height/2 + pos.y*Math.min(parentRoom.heightRatio,1))
         return pos;
     }
     setRoomLocation(room, attempts) {
