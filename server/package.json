@@ -11,6 +11,6 @@
   "dependencies": {
     "express": "^4.16.4",
     "jsdom": "^11.11.0",
-    "socket.io": "^2.1.1"
+    "socket.io": "^2.4.0"
   }
 }
